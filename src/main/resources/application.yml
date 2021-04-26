@@ -1,0 +1,50 @@
+spring:
+  profiles:
+    active: dev
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    initialization-mode: always
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    generate-ddl: true
+  h2:
+    console:
+      enabled: true
+      path: /console
+
+jwt:
+  secret: fisdfoudhOfjidfj
+  header: Authorization
+  expiration: 604800
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: ${JDBC_DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+jwt:
+  secret: dokpgjw90fjdif
+  header: Authorization
+  expiration: 604800
